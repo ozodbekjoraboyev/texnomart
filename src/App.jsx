@@ -7,13 +7,13 @@ import Cardlar from "./companent/card/Cards";
 
 function App() {
   const [savatcha, setSavatcha] = useState([]);
-  const [sevimlilar, setSevimlilar] = useState([]);
+
   return (
     <>
-      <NavbarHome savatcha={savatcha} setSavatcha={setSavatcha} sevimlilar={sevimlilar} setSevimlilar={setSevimlilar} />
+      <NavbarHome savatcha={savatcha} setSavatcha={setSavatcha} />
       <Carusel />
       <Catigores />
-      <Cardlar savatcha={savatcha} setSavatcha={setSavatcha} sevimlilar={sevimlilar} setSevimlilar={setSevimlilar} />
+      <Cardlar savatcha={savatcha} setSavatcha={setSavatcha} />
     </>
   );
 }
