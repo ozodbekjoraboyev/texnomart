@@ -52,7 +52,9 @@ function Cardlar({ setSavatcha }) {
 
     if (isLiked) {
       setSevimlilar((prev) => prev.filter((fav) => fav.id !== item.id));
-      messageApi.warning(`${item.name.slice(0, 19)} sevimlilardan olib tashlandi!`);
+      messageApi.warning(
+        `${item.name.slice(0, 19)} sevimlilardan olib tashlandi!`
+      );
     } else {
       setSevimlilar((prev) => [...prev, item]);
       messageApi.success(`${item.name.slice(0, 19)} sevimlilarga qo'shildi!`);
@@ -102,7 +104,9 @@ function Cardlar({ setSavatcha }) {
                 src={item.image}
                 alt="Product"
               />
-              <p className="text-xl text-black pt-2">{item.name.slice(0, 19)}</p>
+              <p className="text-xl text-black pt-2">
+                {item.name.slice(0, 19)}
+              </p>
               <div className="flex gap-3">
                 <p className="text-black mt-7 rounded-2xl py-1 px-2 text-sm bg-blue-100">
                   {item.axiom_monthly_price}
