@@ -3,7 +3,7 @@ import "./App.css";
 import Carusel from "./companent/Carusel/Carusel";
 import Catigores from "./companent/Caruseltagidagi/Catigores";
 import NavbarHome from "./companent/NavbarHom/NavbarHome";
-import Cardlar from "./companent/card/Cards";
+import Cardlar from "./companent/Card/Cards";
 
 function App() {
   const [savatcha, setSavatcha] = useState([]);
