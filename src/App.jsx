@@ -6,14 +6,18 @@ import NavbarHome from "./companent/NavbarHom/NavbarHome";
 import Cardlar from "./companent/Card/Cards";
 
 function App() {
+  const [showModal, setShowModal] = useState(false)
   const [savatcha, setSavatcha] = useState([]);
+  const toggleOPen = ()=>{
+    setShowModal(!showModal)
+  }
 
   return (
     <>
-      <NavbarHome savatcha={savatcha} setSavatcha={setSavatcha} />
+      <NavbarHome savatcha={savatcha} setSavatcha={setSavatcha} showModal={showModal} setShowModal={setShowModal} toggleOPen={toggleOPen} />
       <Carusel />
       <Catigores />
-      <Cardlar savatcha={savatcha} setSavatcha={setSavatcha} />
+      <Cardlar savatcha={savatcha} setSavatcha={setSavatcha} showModal={showModal} setShowModal={setShowModal} toggleOPen={toggleOPen} />
     </>
   );
 }

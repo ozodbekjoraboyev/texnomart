@@ -3,15 +3,21 @@ import React, { useEffect, useState } from "react";
 import sertsa1 from "../../assets/sertsa1.svg";
 import sertsa2 from "../../assets/sertsa2.svg";
 import ShoppingCart02Icon from "../../assets/ikonkalar/Shoping";
-import { Button, Skeleton, message, Result } from "antd";
+import { Button, Skeleton, message, Result, Modal } from "antd";
+import useMyStore from "../../store";
+import { MinusOutlined, PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 
-function Cardlar({ setSavatcha }) {
+function Cardlar({ setSavatcha, toggleOPen, showModal, setShowModal }) {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [sevimlilar, setSevimlilar] = useState([]);
   const [messageApi, contextHolder] = message.useMessage();
 
+  const cancell = () => {
+    setShowModal(false);
+  };
+  const { like } = useMyStore();
   useEffect(() => {
     axios
       .get(
@@ -89,14 +95,26 @@ function Cardlar({ setSavatcha }) {
             key={item.id}
             className="p-4 relative transition-transform transform hover:scale-105"
           >
-            <span>
+            <div
+              onClick={() => {
+                const aa = like.concat({
+                  name: item.name,
+                  image: item.image,
+                  price: item.price,
+                });
+
+                useMyStore.setState({
+                  like: aa,
+                });
+              }}
+            >
               <img
                 onClick={() => toggleLike(item)}
                 className="w-7 cursor-pointer absolute top-5 right-5"
                 src={isLiked ? sertsa2 : sertsa1}
                 alt="Heart Icon"
               />
-            </span>
+            </div>
 
             <div className="p-3 rounded-xl h-[400px] shadow-lg bg-white">
               <img
@@ -130,6 +148,54 @@ function Cardlar({ setSavatcha }) {
           </div>
         );
       })}
+      <Modal
+        title="❤️ bosgan yurechangiz"
+        open={showModal}
+        onCancel={cancell}
+        width={1200}
+        footer={[
+          <Button key="close" onClick={cancell}>
+            Yopish
+          </Button>,
+        ]}
+      >
+        {like.length ? (
+          <div className="space-y-3">
+            {like.map((item, index) => {
+              return (
+                <div key={item.id} className="">
+                       <div className="flex justify-between pt-5 ">
+                  <p>Hammasini tanlash</p>
+                  <p>Tanlashni o'chirish</p>
+                </div>
+                  <div className="flex items-center gap-3">
+                    <img
+                      className="w-16 h-16 object-cover rounded"
+                      src={item.image}
+                      alt="sevimli"
+                    />
+                    <span className="text-lg font-medium">{item.name}</span>
+                  </div>
+                  <div className="flex items-center gap-2"></div>
+                    <div className="border rounded border-indigo-200   h-auto ml-5 p-2 ">
+                                    <div className=" flex items-center gap-3 border p-2 rounded border-indigo-500">
+                                      <Button type="primary">Hoziroq tolash</Button>
+                                      <Button>Muddatli to'lo'v</Button>
+                                    </div>
+                                    <div>
+                                      <p>{item.count} manashuncha mahsulotni olasizmi</p>
+                                    </div>
+                                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="text-center text-gray-500 py-5">
+            Savatchangiz bo'sh 😊
+          </p>
+        )}
+      </Modal>
     </div>
   );
 }

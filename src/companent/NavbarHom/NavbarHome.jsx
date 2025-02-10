@@ -3,12 +3,12 @@ import NavbarLoketion from './NavbarTop/NavbarLoketion'
 import NavbarCentr from './NavbarCenter/NavbarCentr'
 import NavbarButon from './NavbarBotton/NavbarButon'
 
-function NavbarHome({savatcha,setSavatcha}) {
+function NavbarHome({savatcha,setSavatcha,showModal,setShowModal,toggleOPen}) {
 
   return (
     <div>
       <NavbarLoketion />
-       <NavbarCentr savatcha={savatcha} setSavatcha={setSavatcha}/>
+       <NavbarCentr savatcha={savatcha} setSavatcha={setSavatcha} showModal={showModal} setShowModal={setShowModal} toggleOPen={toggleOPen}/>
        <NavbarButon />
     </div>
   )
