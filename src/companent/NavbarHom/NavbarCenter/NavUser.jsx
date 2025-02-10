@@ -97,16 +97,16 @@ function NavUser({
         ]}
       >
         {savatcha.length ? (
-          <div className="space-y-3 ">
-            {savatcha.map((item, index) => (
-              <div key={item.id} className="">
+          <div className="">
                 <div className="flex justify-between pt-5 ">
                   <p>Hammasini tanlash</p>
                   <p>Tanlashni o'chirish</p>
                 </div>
-                <div className=" flex justify-around ">
+            {savatcha.map((item, index) => (
+              <div key={item.id} className="">
+                <div className=" flex justify-between ">
                   <div className="flex justify-between pt-5 pb-5 gap-5">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center pl-15 gap-3">
                       <img
                         className="w-16 h-16 object-cover rounded"
                         src={item.mahsulotlar.image}
@@ -134,7 +134,7 @@ function NavUser({
                       />
                     </div>
                   </div>
-                  <div className="border rounded border-indigo-200   h-auto ml-5 p-2 ">
+                  <div className="border rounded border-indigo-200 mt-3  h-auto ml-5 p-2 ">
                     <div className=" flex items-center gap-3 border p-2 rounded border-indigo-500">
                       <Button type="primary">Hoziroq tolash</Button>
                       <Button>Muddatli to'lo'v</Button>
