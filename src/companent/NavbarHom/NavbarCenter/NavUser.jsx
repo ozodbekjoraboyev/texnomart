@@ -13,12 +13,15 @@ function NavUser({
   showModal,
   setShowModal,
 }) {
-  const totalCount = savatcha.reduce((sum, item) => sum + item.count, 0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { like } = useMyStore();
+  
   const showwmodal = () => {
     setIsModalOpen(true);
   };
+
+  const totalCount = savatcha.reduce((sum, item) => sum + item.count, 0);
+  const yurak = like.length; 
 
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -65,9 +68,9 @@ function NavUser({
         onClick={toggleOPen}
       >
         <FavouriteIcon />
-        {like > 0 && (
+        {yurak > 0 && (
           <span className="absolute -top-1 -right-2 bg-yellow-500 text-white text-xs font-bold flex items-center justify-center rounded-full w-5 h-5">
-            {like}
+            {yurak}
           </span>
         )}
         <p>Sevimli</p>
@@ -98,10 +101,10 @@ function NavUser({
       >
         {savatcha.length ? (
           <div className="">
-                <div className="flex justify-between pt-5 ">
-                  <p>Hammasini tanlash</p>
-                  <p>Tanlashni o'chirish</p>
-                </div>
+            <div className="flex justify-between pt-5 ">
+              <p>Hammasini tanlash</p>
+              <p>Tanlashni o'chirish</p>
+            </div>
             {savatcha.map((item, index) => (
               <div key={item.id} className="">
                 <div className=" flex justify-between ">
